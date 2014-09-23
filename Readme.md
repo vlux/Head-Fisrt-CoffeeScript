@@ -1,7 +1,7 @@
-###            Head First CoffeeScript
+##            Head First CoffeeScript
 
 
-##                    By Trevor Burnham
+###                    By Trevor Burnham
 
 
-##                    Started in 2014.9.23
+###                    Started in 2014.9.23
