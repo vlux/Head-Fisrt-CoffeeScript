@@ -46,7 +46,6 @@ moveCount = 0
 score = 0
 useWords =[]
 
-#该函数返回所有经过某个特定方格的单词
 scoreMove = (grid, swapCoordinates) ->
     {x1, x2, y1, y2} = swapCoordinates
     words = wordsThroughTile(grid,x1,y1).concat wordsThroughTile(grid,x2,y2)
@@ -59,7 +58,8 @@ scoreMove = (grid, swapCoordinates) ->
     useWords = useWords.concat newWords
     moveScore *= multiplier
     {moveScore, newWords}
-
+    
+#该函数返回所有经过某个特定方格的单词
 wordsThroughTile = (grid, x, y) ->
     strings = []
     for length in [MIN_WORD_LENGTH..GRID_SIZE]
