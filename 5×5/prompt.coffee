@@ -16,8 +16,8 @@ promptForTile2 = ->
             promptForTile1()
 
 GRID_SIZE = 5
-inRange = (x,y) ->
-    0<= x < GRID_SIZE and 0 <= y < GRID_SIZE
+inRange = (x, y) ->
+    0 <= x < GRID_SIZE and 0 <= y < GRID_SIZE
 
 #验证数字是否是整数。Learn!!!!!
 isInteger = (num) ->
@@ -30,10 +30,10 @@ strToCoordinates = (input) ->
         y = parseFloat halves[1]
         if !isInteger(x) or !isInteger(y) or !inRange(x) or !inRange(y)
             console.log "Each coordinate must be an integer"
-        else if not inRange x-1,y-1
+        else if not inRange x - 1, y - 1
             console.log "Each coordinate must be between 1 and #{GRID_SIZE}."
         else
-            {x,y}
+            {x, y}
     else
         console.log 'Input must be of the form x,y.'
 
