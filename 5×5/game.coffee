@@ -60,6 +60,7 @@ scoreMove = (grid, swapCoordinates) ->
     {moveScore, newWords}
 
 #该函数返回所有经过某个特定方格的单词
+MIN_WORD_LENGTH = Math.min.apply Math, (w.length for w in @wordList)
 wordsThroughTile = (grid, x, y) ->
     strings = []
 for length in [MIN_WORD_LENGTH..GRID_SIZE]
