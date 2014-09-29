@@ -58,28 +58,28 @@ scoreMove = (grid, swapCoordinates) ->
     useWords = useWords.concat newWords
     moveScore *= multiplier
     {moveScore, newWords}
-    
+
 #该函数返回所有经过某个特定方格的单词
 wordsThroughTile = (grid, x, y) ->
     strings = []
-    for length in [MIN_WORD_LENGTH..GRID_SIZE]
-        range = length - 1
-        addTiles = (func) ->
-            strings.push (func(i) for i in [0...range]).join ''
-        for offset in [0...length]   #获得经过给定方格的所有单词，而不单单是以它开头的单词
-            # Vertical
-            if inRange(x - offset, y) and inRange(x - offset + range, y)
-                addTiles (i) -> grid[x - offset + i][y]
-            #Horizontal
-            if inRange(x, y - offset) and inRange(x, y - offset + range)
-                addTiles (i) -> grid[x][y - offset + i]
-            #Diagonal (upper-left to lower-right)
-            if inRange(x - offset, y - offset) and inRange(x - offset + range, y - offset + range)
-                addTiles (i) -> grid[x - offset + i][y - offset + i]
-            #Diagonal (lower-left to upper-right)
-            if inRange(x - offset, y + offset) and inRange(x - offset + range, y + offset - range)
-                addTiles (i) -> grid[x - offset + i][y + offset - i]
-    str for str in strings when isWord str
+for length in [MIN_WORD_LENGTH..GRID_SIZE]
+    range = length - 1
+    addTiles = (func) ->
+        strings.push (func(i) for i in [0...range]).join ''
+    for offset in [0...length]   #获得经过给定方格的所有单词，而不单单是以它开头的单词
+        # Vertical
+        if inRange(x - offset, y) and inRange(x - offset + range, y)
+            addTiles (i) -> grid[x - offset + i][y]
+        #Horizontal
+        if inRange(x, y - offset) and inRange(x, y - offset + range)
+            addTiles (i) -> grid[x][y - offset + i]
+        #Diagonal (upper-left to lower-right)
+        if inRange(x - offset, y - offset) and inRange(x - offset + range, y - offset + range)
+            addTiles (i) -> grid[x - offset + i][y - offset + i]
+        #Diagonal (lower-left to upper-right)
+        if inRange(x - offset, y + offset) and inRange(x - offset + range, y + offset - range)
+            addTiles (i) -> grid[x - offset + i][y + offset - i]
+str for str in strings when isWord str
 
 
 console.log "Welcome to 5×5!"
@@ -130,6 +130,13 @@ promptForTile2 = (x1, y1) ->
             console.log "Your score after #{moveCount} moves: #{score}"
             promptForTile1()
 
+GRID_SIZE = 5
+inRange = (x, y) ->
+    0 <= x < GRID_SIZE and 0 <= y < GRID_SIZE
+
+#验证数字是否是整数。Learn!!!!!
+isInteger = (num) ->
+    num is Math.round(num)
 
 strToCoordinates = (input) ->
     halves = input.split(',')
