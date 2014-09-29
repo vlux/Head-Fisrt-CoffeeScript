@@ -60,27 +60,27 @@ scoreMove = (grid, swapCoordinates) ->
     {moveScore, newWords}
 
 #该函数返回所有经过某个特定方格的单词
-MIN_WORD_LENGTH = Math.min.apply Math, (w.length for w in @wordList)
 wordsThroughTile = (grid, x, y) ->
     strings = []
-for length in [MIN_WORD_LENGTH..GRID_SIZE]
-    range = length - 1
-    addTiles = (func) ->
-        strings.push (func(i) for i in [0...range]).join ''
-    for offset in [0...length]   #获得经过给定方格的所有单词，而不单单是以它开头的单词
-        # Vertical
-        if inRange(x - offset, y) and inRange(x - offset + range, y)
-            addTiles (i) -> grid[x - offset + i][y]
-        #Horizontal
-        if inRange(x, y - offset) and inRange(x, y - offset + range)
-            addTiles (i) -> grid[x][y - offset + i]
-        #Diagonal (upper-left to lower-right)
-        if inRange(x - offset, y - offset) and inRange(x - offset + range, y - offset + range)
-            addTiles (i) -> grid[x - offset + i][y - offset + i]
-        #Diagonal (lower-left to upper-right)
-        if inRange(x - offset, y + offset) and inRange(x - offset + range, y + offset - range)
-            addTiles (i) -> grid[x - offset + i][y + offset - i]
-str for str in strings when isWord str
+    MIN_WORD_LENGTH = Math.min.apply Math, (w.length for w in wordList)
+    for length in [MIN_WORD_LENGTH..GRID_SIZE]
+        range = length - 1
+        addTiles = (func) ->
+            strings.push (func(i) for i in [0...range]).join ''
+        for offset in [0...length]   #获得经过给定方格的所有单词，而不单单是以它开头的单词
+            # Vertical
+            if inRange(x - offset, y) and inRange(x - offset + range, y)
+                addTiles (i) -> grid[x - offset + i][y]
+            #Horizontal
+            if inRange(x, y - offset) and inRange(x, y - offset + range)
+                addTiles (i) -> grid[x][y - offset + i]
+            #Diagonal (upper-left to lower-right)
+            if inRange(x - offset, y - offset) and inRange(x - offset + range, y - offset + range)
+                addTiles (i) -> grid[x - offset + i][y - offset + i]
+            #Diagonal (lower-left to upper-right)
+            if inRange(x - offset, y + offset) and inRange(x - offset + range, y + offset - range)
+                addTiles (i) -> grid[x - offset + i][y + offset - i]
+    str for str in strings when isWord str
 
 
 console.log "Welcome to 5×5!"

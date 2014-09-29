@@ -3,7 +3,7 @@ class Dictionary
         @setGrid grid if grid?
 
     setGrid: (@grid) ->
-        @wordList = @originalWordList.slice(0) #slice(0)用来复制js数组
+        @wordList = @originalWordList.slice(0)     #slice(0)用来复制js数组
         @wordList = (word for word in @wordList when word.length <= @grid.size)
         @minWordLength = Math.min apply Math, (w.length for w in @wordList)
         @useWords = []
